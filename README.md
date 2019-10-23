@@ -47,6 +47,4 @@ If you find something, please report it at https://github.com/HektorW/vs-code-cr
 
 ## Release Notes
 
-### 1.0.0
-
-Initial release.
+See CHANGELOG.md

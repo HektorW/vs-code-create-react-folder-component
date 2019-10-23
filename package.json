@@ -7,7 +7,8 @@
 		"type": "git",
 		"url": "https://github.com/HektorW/vs-code-create-react-folder-component"
 	},
-	"version": "0.0.1",
+	"version": "1.0.0",
+	"icon": "images/icon.png",
 	"engines": {
 		"vscode": "^1.39.0"
 	},
