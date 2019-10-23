@@ -1,65 +1,52 @@
-# ts-context-component README
+# Create React Folder Component
 
-This is the README for your extension "ts-context-component". After writing up a brief description, we recommend including the following sections.
+A simple wizard that speeds up creating new React folder components.
+
+
+
+This extension is very bare-bones but opinionated on how a component directory should be structured.
+
+See the screenshots further down for examples.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension provides two commands, accessible in the explorer context menu and in the command palette.
 
-For example if there is an image subfolder under your extension project workspace:
+Command palette:
+![Command palette commands](images/command-palette.png)
 
-\!\[feature X\]\(images/feature-x.png\)
+Explorer context menu:
+![Context menu commands](images/context-menu.png)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+When activated it will prompt you to give your component a name:
+![Name component](images/name-component.png)
+
+The extension will then create a folder and files for a new component with your given name:
+![Component structure](images/created-component.png)
+
+With styles:
+![Component structure with style](images/created-styled-component.png)
+
+The contents of those files will be (without style):
+![Component content](images/component-contents.png)
+![Index content](images/index-contents.png)
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+No extra requirements 🎉.
 
 ## Extension Settings
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+No settings yet 😌.
 
 ## Known Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+There's no known issues 🐞.
+
+If you find something, please report it at https://github.com/HektorW/vs-code-create-react-folder-component.
 
 ## Release Notes
 
-Users appreciate release notes as you update your extension.
-
 ### 1.0.0
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Initial release.

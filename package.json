@@ -1,7 +1,12 @@
 {
-	"name": "ts-context-component",
-	"displayName": "TS-Context-Component",
-	"description": "",
+	"name": "create-react-folder-component",
+	"displayName": "Create React Folder Component",
+	"description": "A simple wizard that speeds up creating new React folder components",
+	"publisher": "hektorw",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/HektorW/vs-code-create-react-folder-component"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.39.0"
