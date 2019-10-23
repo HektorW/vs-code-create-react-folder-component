@@ -4,13 +4,13 @@ import createFolderAndFiles, { FileDescription } from './createFolderAndFiles'
 import joinUri from './utils/joinUri'
 import renderTemplate from './utils/renderTemplate'
 
-const indexFileTemplate = `export { default } from './{{ComponentName}}'`
+const indexFileTemplate = `export { default } from './{{componentName}}'`
 
 const componentFileTemplate = `import React from 'react'
 
-interface {{ComponentName}}Props {}
+interface {{componentName}}Props {}
 
-export default function {{ComponentName}}({}: {{ComponentName}}Props) {
+export default function {{componentName}}({}: {{componentName}}Props) {
 
 }`
 
