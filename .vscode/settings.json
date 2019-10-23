@@ -1,0 +1,23 @@
+{
+    "files.exclude": {
+        // "out": true,
+        "node_modules": true
+    },
+    "search.exclude": {
+        "out": true
+    },
+
+    // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+    "typescript.tsc.autoDetect": "off",
+
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    "prettier.bracketSpacing": true,
+    "prettier.printWidth": 100,
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+
+    "[typescript]": {
+        "editor.formatOnSave": true
+    }
+}
