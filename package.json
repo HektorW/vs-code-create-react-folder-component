@@ -16,29 +16,29 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.createTypeScriptComponent",
-		"onCommand:extension.createTypeScriptComponentWithStyle"
+		"onCommand:extension.createReactFolderComponent",
+		"onCommand:extension.createReactFolderComponentWithStyle"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "extension.createTypeScriptComponent",
-				"title": "Create Typescript Component"
+				"command": "extension.createReactFolderComponent",
+				"title": "Create React Folder Component"
 			},
 			{
-				"command": "extension.createTypeScriptComponentWithStyle",
-				"title": "Create Typescript Component (with style)"
+				"command": "extension.createReactFolderComponentWithStyle",
+				"title": "Create React Folder Component (with style)"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "extension.createTypeScriptComponent",
+					"command": "extension.createReactFolderComponent",
 					"group": "7_modification"
 				},
 				{
-					"command": "extension.createTypeScriptComponentWithStyle",
+					"command": "extension.createReactFolderComponentWithStyle",
 					"group": "7_modification"
 				}
 			]

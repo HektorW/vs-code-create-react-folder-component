@@ -1,19 +1,19 @@
 import * as vscode from 'vscode'
-import createTypeScriptComponent from './createTypeScriptComponent'
-import createTypeScriptComponentWithStyle from './createTypeScriptComponentWithStyle'
+import createReactFolderComponent from './createReactFolderComponent'
+import createReactFolderComponentWithStyle from './createReactFolderComponentWithStyle'
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'extension.createTypeScriptComponent',
-      createTypeScriptComponent
+      'extension.createReactFolderComponent',
+      createReactFolderComponent
     )
   )
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      'extension.createTypeScriptComponentWithStyle',
-      createTypeScriptComponentWithStyle
+      'extension.createReactFolderComponentWithStyle',
+      createReactFolderComponentWithStyle
     )
   )
 }
