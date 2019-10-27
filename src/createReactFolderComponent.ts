@@ -13,6 +13,7 @@ import {
   getStyledComponentTemplate
 } from './utils/extensionSettings'
 import transformComponentNameToStyleName from './utils/transformComponentNameToStyleName'
+import showSelectLanguageTemplate from './showSelectLanguageTemplate'
 
 export default async function createTypeScriptComponent(
   clickedUri?: Uri,
@@ -25,9 +26,12 @@ export default async function createTypeScriptComponent(
 
   const { componentFolderUri, componentName, workspaceFolder } = componentFolderAndName
 
-  const extensionSettings = getExtensionSettings(workspaceFolder)
+  const templateLanguage = await showSelectLanguageTemplate(workspaceFolder)
+  if (!templateLanguage) {
+    return
+  }
 
-  const templateLanguage = TemplateLanguage.TypeScript
+  const extensionSettings = getExtensionSettings(workspaceFolder)
 
   const indexTemplate = getIndexTemplate(extensionSettings, templateLanguage)
   const componentTemplate = withStyle
@@ -35,30 +39,57 @@ export default async function createTypeScriptComponent(
     : getComponentTemplate(extensionSettings, templateLanguage)
 
   const templateData: TemplateData = {
-    $COMPONENT_NAME: componentName,
-    $STYLE_COMPONENT_NAME: transformComponentNameToStyleName(componentName)
+    $COMPONENT_NAME: componentName
+  }
+
+  if (withStyle) {
+    templateData.$STYLE_COMPONENT_NAME = transformComponentNameToStyleName(componentName)
+    templateData.$STYLE_COMPONENT_FILENAME = renderTemplate(
+      getStyleFileNameTemplate(extensionSettings, templateLanguage),
+      templateData
+    )
   }
 
   const files: FileDescription[] = [
     {
-      uri: joinUri(componentFolderUri, `${componentName}.tsx`),
+      uri: joinUri(
+        componentFolderUri,
+        `${componentName}${componentFileExtension(templateLanguage)}`
+      ),
       contents: renderListTemplate(componentTemplate, templateData)
     },
     {
-      uri: joinUri(componentFolderUri, 'index.ts'),
+      uri: joinUri(componentFolderUri, `index${indexFileExtension(templateLanguage)}`),
       contents: renderListTemplate(indexTemplate, templateData)
     }
   ]
 
   if (withStyle) {
     const styleFileTemplate = getStyleFileTemplate(extensionSettings, templateLanguage)
-    const styleFileNameTemplate = getStyleFileNameTemplate(extensionSettings, templateLanguage)
 
     files.push({
-      uri: joinUri(componentFolderUri, renderTemplate(styleFileNameTemplate, templateData)),
+      uri: joinUri(componentFolderUri, templateData.$STYLE_COMPONENT_FILENAME),
       contents: renderListTemplate(styleFileTemplate, templateData)
     })
   }
 
   await createFolderAndFiles(componentFolderUri, files)
+}
+
+function componentFileExtension(language: TemplateLanguage): string {
+  switch (language) {
+    case TemplateLanguage.TypeScript:
+      return '.tsx'
+    case TemplateLanguage.JavaScript:
+      return '.js'
+  }
+}
+
+function indexFileExtension(language: TemplateLanguage): string {
+  switch (language) {
+    case TemplateLanguage.TypeScript:
+      return '.ts'
+    case TemplateLanguage.JavaScript:
+      return '.js'
+  }
 }

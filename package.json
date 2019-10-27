@@ -46,6 +46,70 @@
 		"configuration": {
 			"title": "Create React Folder Component",
 			"properties": {
+				"createreactfoldercomponent.templateLanguage": {
+					"title": "Template Language",
+					"description": "Language to use when creating Components",
+					"type": "string",
+					"default": "Ask",
+					"enum": [
+						"JavaScript",
+						"TypeScript",
+						"Ask"
+					]
+				},
+				"createreactfoldercomponent.javaScriptComponentTemplate": {
+					"title": "JavaScript Component file Template",
+					"type": "array",
+					"description": "Template used for creating the Component file in JavaScript",
+					"default": [
+						"import React from 'react'",
+						"import PropTypes from 'prop-types'",
+						"",
+						"$COMPONENT_NAME.propTypes = {",
+						"}",
+						"",
+						"export default function $COMPONENT_NAME({}) {",
+						"}"
+					]
+				},
+				"createreactfoldercomponent.javaScriptStyledComponentTemplate": {
+					"title": "JavaScript styled Component file Template",
+					"type": "array",
+					"description": "Template used for creating the styled Component file in JavaScript",
+					"default": [
+						"import React from 'react'",
+						"import PropTypes from 'prop-types'",
+						"import './$STYLE_COMPONENT_FILENAME'",
+						"",
+						"$COMPONENT_NAME.propTypes = {",
+						"}",
+						"",
+						"export default function $COMPONENT_NAME({}) {",
+						"}"
+					]
+				},
+				"createreactfoldercomponent.javaScriptIndexTemplate": {
+					"title": "JavaScript index file Template",
+					"type": "array",
+					"description": "Template used for creating the index file in JavaScript",
+					"default": [
+						"export { default } from './$COMPONENT_NAME'"
+					]
+				},
+				"createreactfoldercomponent.javaScriptStyleTemplate": {
+					"title": "JavaScript style file Template",
+					"type": "array",
+					"description": "Template used for creating the style file in JavaScript",
+					"default": [
+						".$STYLE_COMPONENT_NAME {}"
+					]
+				},
+				"createreactfoldercomponent.javaScriptStyleFileNameTemplate": {
+					"title": "JavaScript style file name template",
+					"type": "string",
+					"description": "File name for style file in JavaScript",
+					"default": "$STYLE_COMPONENT_NAME.scss"
+				},
 				"createreactfoldercomponent.typeScriptComponentTemplate": {
 					"title": "TypeScript Component file Template",
 					"type": "array",
@@ -66,7 +130,7 @@
 					"description": "Template used for creating the styled Component file in TypeScript",
 					"default": [
 						"import React from 'react'",
-						"import './$STYLE_COMPONENT_NAME.scss'",
+						"import './$STYLE_COMPONENT_FILENAME'",
 						"",
 						"interface $COMPONENT_NAMEProps {",
 						"}",
