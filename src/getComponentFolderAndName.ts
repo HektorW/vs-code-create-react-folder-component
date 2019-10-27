@@ -1,4 +1,4 @@
-import { Uri, workspace, window } from 'vscode'
+import { Uri, workspace, window, WorkspaceFolder } from 'vscode'
 import { join } from 'path'
 import showSelectComponentParentFolder from './showSelectComponentParentFolder'
 
@@ -7,6 +7,7 @@ export default async function getComponentFolderAndName(
 ): Promise<{
   componentFolderUri: Uri
   componentName: string
+  workspaceFolder?: WorkspaceFolder
 } | null> {
   if (!workspace.workspaceFolders) {
     window.showWarningMessage('This extension is only available in a workspace.')
@@ -39,5 +40,5 @@ export default async function getComponentFolderAndName(
   const componentFolderPath = join(parentFolder.fsPath, componentName)
   const componentFolderUri = parentFolder.with({ path: componentFolderPath })
 
-  return { componentFolderUri, componentName }
+  return { componentFolderUri, componentName, workspaceFolder }
 }

@@ -1,19 +1,18 @@
 import * as vscode from 'vscode'
 import createReactFolderComponent from './createReactFolderComponent'
-import createReactFolderComponentWithStyle from './createReactFolderComponentWithStyle'
 
 export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'extension.createReactFolderComponent',
-      createReactFolderComponent
+      (clickedUri?: vscode.Uri) => createReactFolderComponent(clickedUri)
     )
   )
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
       'extension.createReactFolderComponentWithStyle',
-      createReactFolderComponentWithStyle
+      (clickedUri?: vscode.Uri) => createReactFolderComponent(clickedUri, true)
     )
   )
 }

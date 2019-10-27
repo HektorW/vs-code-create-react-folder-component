@@ -42,6 +42,62 @@
 					"group": "7_modification"
 				}
 			]
+		},
+		"configuration": {
+			"title": "Create React Folder Component",
+			"properties": {
+				"createreactfoldercomponent.typeScriptComponentTemplate": {
+					"title": "TypeScript Component file Template",
+					"type": "array",
+					"description": "Template used for creating the Component file in TypeScript",
+					"default": [
+						"import React from 'react'",
+						"",
+						"interface $COMPONENT_NAMEProps {",
+						"}",
+						"",
+						"export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
+						"}"
+					]
+				},
+				"createreactfoldercomponent.typeScriptStyledComponentTemplate": {
+					"title": "TypeScript styled Component file Template",
+					"type": "array",
+					"description": "Template used for creating the styled Component file in TypeScript",
+					"default": [
+						"import React from 'react'",
+						"import './$STYLE_COMPONENT_NAME.scss'",
+						"",
+						"interface $COMPONENT_NAMEProps {",
+						"}",
+						"",
+						"export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
+						"}"
+					]
+				},
+				"createreactfoldercomponent.typeScriptIndexTemplate": {
+					"title": "TypeScript index file Template",
+					"type": "array",
+					"description": "Template used for creating the index file in TypeScript",
+					"default": [
+						"export { default } from './$COMPONENT_NAME'"
+					]
+				},
+				"createreactfoldercomponent.typeScriptStyleTemplate": {
+					"title": "TypeScript style file Template",
+					"type": "array",
+					"description": "Template used for creating the style file in TypeScript",
+					"default": [
+						".$STYLE_COMPONENT_NAME {}"
+					]
+				},
+				"createreactfoldercomponent.typeScriptStyleFileNameTemplate": {
+					"title": "TypeScript style file name template",
+					"type": "string",
+					"description": "File name for style file in TypeScript",
+					"default": "$STYLE_COMPONENT_NAME.scss"
+				}
+			}
 		}
 	},
 	"scripts": {
