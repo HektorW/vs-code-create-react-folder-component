@@ -1,5 +1,6 @@
 import { Uri, workspace, QuickPickItem, window, FileType } from 'vscode'
 import { basename, join } from 'path'
+import sortAlphabetically from './utils/sortAlphabetically'
 
 export default async function showSelectFolderOrChild(
   currentFolder: Uri,
@@ -8,9 +9,9 @@ export default async function showSelectFolderOrChild(
   const currentFolderName = basename(currentFolder.path)
 
   const currentFolderChilds = await workspace.fs.readDirectory(currentFolder)
-  const currentFolderChildDirectories = currentFolderChilds.filter(
-    child => child[1] & FileType.Directory
-  )
+  const currentFolderChildFolders = currentFolderChilds
+    .filter(child => child[1] & FileType.Directory)
+    .map(([folderName]) => folderName)
 
   const selectCurrentFolderOption: QuickPickItem = {
     label: `Select this folder (${currentFolderName}/)`
@@ -19,7 +20,7 @@ export default async function showSelectFolderOrChild(
   const closestParentFolder: Uri | undefined = parentFolders[parentFolders.length - 1]
   const selectParentFolderOption: QuickPickItem | null = closestParentFolder
     ? {
-        label: `../ (${basename(closestParentFolder.path)}/)`
+        label: `Go back to parent folder (${basename(closestParentFolder.path)}/)`
       }
     : null
 
@@ -29,14 +30,16 @@ export default async function showSelectFolderOrChild(
     options.push(selectParentFolderOption)
   }
 
+  workspace.getConfiguration()
+
   options.push(
-    ...currentFolderChildDirectories.map(child => ({
-      label: `${child[0]}/`
+    ...sortAlphabetically(currentFolderChildFolders).map(folderName => ({
+      label: `${folderName}/`
     }))
   )
 
   const selectedOption = await window.showQuickPick(options, {
-    placeHolder: 'Selection'
+    placeHolder: 'Select a folder'
   })
   if (!selectedOption) {
     return null
