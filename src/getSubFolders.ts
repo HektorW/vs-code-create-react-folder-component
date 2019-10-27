@@ -17,12 +17,14 @@ export default async function getSubFolders(
     .map(([folderName]) => joinUri(currentFolder, folderName))
 
   const excludedFilesSettings = workspace
-    .getConfiguration(undefined, currentFolder)
-    .get('files.exclude') as ExcludeFilesSetting
+    .getConfiguration('files', workspaceFolder)
+    .get<ExcludeFilesSetting>('exclude')
 
-  const activeExcludedFoldes = Object.keys(excludedFilesSettings).filter(
-    globPattern => excludedFilesSettings[globPattern] === true
-  )
+  const activeExcludedFoldes = excludedFilesSettings
+    ? Object.keys(excludedFilesSettings).filter(
+        globPattern => excludedFilesSettings[globPattern] === true
+      )
+    : []
 
   const filteredSubFolderUris = subFolderUris.filter(subFolderUri => {
     let relativeWorkspaceFolderPath = subFolderUri.path.replace(workspaceFolder.path, '')
