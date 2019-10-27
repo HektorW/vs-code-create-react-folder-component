@@ -6,7 +6,11 @@ export interface FileDescription {
   contents: string
 }
 
-export default async function createFolderAndFiles(folderUri: Uri, files: FileDescription[]) {
+export default async function createFolderAndFiles(
+  folderUri: Uri,
+  files: FileDescription[],
+  openFileIndices: number[] = [0]
+) {
   try {
     const folderStats = await workspace.fs.stat(folderUri)
 
@@ -30,4 +34,11 @@ export default async function createFolderAndFiles(folderUri: Uri, files: FileDe
       workspace.fs.writeFile(fileDescription.uri, Buffer.from(fileDescription.contents, 'utf8'))
     )
   )
+
+  openFileIndices.forEach(async fileIndex => {
+    const fileDescription = files[fileIndex]
+    if (fileDescription) {
+      await window.showTextDocument(fileDescription.uri, { preview: true })
+    }
+  })
 }
