@@ -19,5 +19,14 @@
 
     "[typescript]": {
         "editor.formatOnSave": true
-    }
+    },
+
+    "mocha.files.glob": "./src/unit-tests/**/*.test.ts",
+    "mocha.requires": [
+        "ts-node/register"
+    ],
+    "mocha.runTestsOnSave": "true",
+
+    "mochaExplorer.files": "src/unit-tests/**/*.test.ts",
+    "mochaExplorer.require": "ts-node/register"
 }

@@ -1,4 +1,3 @@
-import { describe, it } from 'mocha'
 import * as assert from 'assert'
 import transformComponentNameToStyleName from '../../utils/transformComponentNameToStyleName'
 
@@ -30,6 +29,24 @@ describe('utils/transformComponentNameToStyleName', () => {
   describe('AGreatCDN', () => {
     it('should return "a-great-cdn"', () => {
       assert.equal(transformComponentNameToStyleName('AGreatCDN'), 'a-great-cdn')
+    })
+  })
+
+  describe('Error404', () => {
+    it('should return "error-404"', () => {
+      assert.equal(transformComponentNameToStyleName('Error404'), 'error-404')
+    })
+  })
+
+  describe('Error404Page', () => {
+    it('should return "error-404-page"', () => {
+      assert.equal(transformComponentNameToStyleName('Error404Page'), 'error-404-page')
+    })
+  })
+
+  describe('Page1Child2', () => {
+    it('should return "page-1-child-2"', () => {
+      assert.equal(transformComponentNameToStyleName('Page1Child2'), 'page-1-child-2')
     })
   })
 })

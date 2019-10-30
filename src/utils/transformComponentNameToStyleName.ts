@@ -1,7 +1,12 @@
-export default function transformComponentNameToStyleName(componentName: string) {
-  const uppercaseRegex = /[A-Z]+/g
+const numberRegex = /\w([0-9]+)/g
+const uppercaseRegex = /[A-Z]+/g
 
-  return componentName.replace(uppercaseRegex, (letters, offset, entireString) => {
+export default function transformComponentNameToStyleName(componentName: string) {
+  const transformedNumbers = componentName.replace(numberRegex, (match, numbers) => {
+    return match.replace(numbers, `-${numbers}`)
+  })
+
+  return transformedNumbers.replace(uppercaseRegex, (letters, offset, entireString) => {
     if (offset === 0) {
       return transformUppercaseLetters(letters)
     }
