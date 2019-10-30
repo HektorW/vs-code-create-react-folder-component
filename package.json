@@ -13,8 +13,22 @@
 		"vscode": "^1.39.0"
 	},
 	"categories": [
-		"Other"
+		"Other",
+		"Snippets"
 	],
+	"keywords": [
+		"react",
+		"component",
+		"snippet",
+		"boilerplate",
+		"typescript",
+		"javascript",
+		"folder-component"
+	],
+	"galleryBanner": {
+		"color": "#1a202d",
+		"theme": "dark"
+	},
 	"activationEvents": [
 		"onCommand:extension.createReactFolderComponent",
 		"onCommand:extension.createReactFolderComponentWithStyle"
