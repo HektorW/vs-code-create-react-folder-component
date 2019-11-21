@@ -1,6 +1,6 @@
 import { Uri, workspace, FileType } from 'vscode'
+import { join } from 'path'
 import * as minimatch from 'minimatch'
-import joinUri from './utils/joinUri'
 
 interface ExcludeFilesSetting {
   [globPattern: string]: boolean
@@ -14,7 +14,7 @@ export default async function getSubFolders(
 
   const subFolderUris = folderChilds
     .filter(([_, fileType]) => fileType & FileType.Directory)
-    .map(([folderName]) => joinUri(currentFolder, folderName))
+    .map(([folderName]) => Uri.file(join(currentFolder.path, folderName)))
 
   const excludedFilesSettings = workspace
     .getConfiguration('files', workspaceFolder)

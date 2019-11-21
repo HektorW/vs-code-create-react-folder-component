@@ -1,7 +1,7 @@
 import { Uri } from 'vscode'
+import { join } from 'path'
 import getComponentFolderAndName from './getComponentFolderAndName'
 import createFolderAndFiles, { FileDescription } from './createFolderAndFiles'
-import joinUri from './utils/joinUri'
 import { renderListTemplate, TemplateData, renderTemplate } from './utils/renderTemplate'
 import {
   getExtensionSettings,
@@ -52,14 +52,13 @@ export default async function createTypeScriptComponent(
 
   const files: FileDescription[] = [
     {
-      uri: joinUri(
-        componentFolderUri,
-        `${componentName}${componentFileExtension(templateLanguage)}`
+      uri: Uri.file(
+        join(componentFolderUri.path, `${componentName}${componentFileExtension(templateLanguage)}`)
       ),
       contents: renderListTemplate(componentTemplate, templateData)
     },
     {
-      uri: joinUri(componentFolderUri, `index${indexFileExtension(templateLanguage)}`),
+      uri: Uri.file(join(componentFolderUri.path, `index${indexFileExtension(templateLanguage)}`)),
       contents: renderListTemplate(indexTemplate, templateData)
     }
   ]
@@ -68,7 +67,7 @@ export default async function createTypeScriptComponent(
     const styleFileTemplate = getStyleFileTemplate(extensionSettings, templateLanguage)
 
     files.push({
-      uri: joinUri(componentFolderUri, templateData.$STYLE_COMPONENT_FILENAME),
+      uri: Uri.file(join(componentFolderUri.path, templateData.$STYLE_COMPONENT_FILENAME)),
       contents: renderListTemplate(styleFileTemplate, templateData)
     })
   }

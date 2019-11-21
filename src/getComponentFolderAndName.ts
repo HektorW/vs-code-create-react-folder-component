@@ -25,8 +25,8 @@ export default async function getComponentFolderAndName(
   const workspaceFolder = workspace.getWorkspaceFolder(parentFolder)
 
   const promptFolder = workspaceFolder
-    ? parentFolder.fsPath.replace(workspaceFolder.uri.fsPath, '')
-    : parentFolder.fsPath
+    ? parentFolder.path.replace(workspaceFolder.uri.path, '')
+    : parentFolder.path
 
   const componentName = await window.showInputBox({
     placeHolder: 'ComponentName',
@@ -37,8 +37,8 @@ export default async function getComponentFolderAndName(
     return null
   }
 
-  const componentFolderPath = join(parentFolder.fsPath, componentName)
-  const componentFolderUri = parentFolder.with({ path: componentFolderPath })
+  const componentFolderPath = join(parentFolder.path, componentName)
+  const componentFolderUri = Uri.file(componentFolderPath)
 
   return { componentFolderUri, componentName, workspaceFolder }
 }

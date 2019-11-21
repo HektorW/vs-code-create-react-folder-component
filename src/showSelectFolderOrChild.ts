@@ -51,7 +51,7 @@ export default async function showSelectFolderOrChild(
   }
 
   const childFolderUri = currentFolder.with({
-    path: join(currentFolder.fsPath, basename(selectedOption.label))
+    path: join(currentFolder.path, basename(selectedOption.label))
   })
 
   return showSelectFolderOrChild(childFolderUri, [...parentFolders, currentFolder])

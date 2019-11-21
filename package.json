@@ -61,6 +61,7 @@
 			"title": "Create React Folder Component",
 			"properties": {
 				"createreactfoldercomponent.templateLanguage": {
+					"scope": "resource",
 					"title": "Template Language",
 					"description": "Language to use when creating Components",
 					"type": "string",
@@ -72,6 +73,7 @@
 					]
 				},
 				"createreactfoldercomponent.javaScriptComponentTemplate": {
+					"scope": "resource",
 					"title": "JavaScript Component file Template",
 					"type": "array",
 					"description": "Template used for creating the Component file in JavaScript",
@@ -87,6 +89,7 @@
 					]
 				},
 				"createreactfoldercomponent.javaScriptStyledComponentTemplate": {
+					"scope": "resource",
 					"title": "JavaScript styled Component file Template",
 					"type": "array",
 					"description": "Template used for creating the styled Component file in JavaScript",
@@ -103,6 +106,7 @@
 					]
 				},
 				"createreactfoldercomponent.javaScriptIndexTemplate": {
+					"scope": "resource",
 					"title": "JavaScript index file Template",
 					"type": "array",
 					"description": "Template used for creating the index file in JavaScript",
@@ -111,6 +115,7 @@
 					]
 				},
 				"createreactfoldercomponent.javaScriptStyleTemplate": {
+					"scope": "resource",
 					"title": "JavaScript style file Template",
 					"type": "array",
 					"description": "Template used for creating the style file in JavaScript",
@@ -119,12 +124,14 @@
 					]
 				},
 				"createreactfoldercomponent.javaScriptStyleFileNameTemplate": {
+					"scope": "resource",
 					"title": "JavaScript style file name template",
 					"type": "string",
 					"description": "File name for style file in JavaScript",
 					"default": "$STYLE_COMPONENT_NAME.scss"
 				},
 				"createreactfoldercomponent.typeScriptComponentTemplate": {
+					"scope": "resource",
 					"title": "TypeScript Component file Template",
 					"type": "array",
 					"description": "Template used for creating the Component file in TypeScript",
@@ -139,6 +146,7 @@
 					]
 				},
 				"createreactfoldercomponent.typeScriptStyledComponentTemplate": {
+					"scope": "resource",
 					"title": "TypeScript styled Component file Template",
 					"type": "array",
 					"description": "Template used for creating the styled Component file in TypeScript",
@@ -154,6 +162,7 @@
 					]
 				},
 				"createreactfoldercomponent.typeScriptIndexTemplate": {
+					"scope": "resource",
 					"title": "TypeScript index file Template",
 					"type": "array",
 					"description": "Template used for creating the index file in TypeScript",
@@ -162,6 +171,7 @@
 					]
 				},
 				"createreactfoldercomponent.typeScriptStyleTemplate": {
+					"scope": "resource",
 					"title": "TypeScript style file Template",
 					"type": "array",
 					"description": "Template used for creating the style file in TypeScript",
@@ -170,6 +180,7 @@
 					]
 				},
 				"createreactfoldercomponent.typeScriptStyleFileNameTemplate": {
+					"scope": "resource",
 					"title": "TypeScript style file name template",
 					"type": "string",
 					"description": "File name for style file in TypeScript",
