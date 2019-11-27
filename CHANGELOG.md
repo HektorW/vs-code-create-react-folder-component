@@ -2,6 +2,10 @@
 
 All notable changes to the "Create React Folder Component" extension will be documented in this file.
 
+## 2.0.2
+
+- Fix file path joins for Windows
+
 ## 2.0.1
 
 - Fix stylename transform
