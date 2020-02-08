@@ -1,3 +1,5 @@
+import { getWorkspaceEOL } from './workspaceSettings'
+
 const { keys } = Object
 
 export interface TemplateData {
@@ -13,5 +15,6 @@ export function renderTemplate(template: string, templateData: TemplateData) {
 }
 
 export function renderListTemplate(listTemplate: string[], templateData: TemplateData) {
-  return listTemplate.map(templateItem => renderTemplate(templateItem, templateData)).join('\n')
+  const eol = getWorkspaceEOL()
+  return listTemplate.map(templateItem => renderTemplate(templateItem, templateData)).join(eol)
 }
