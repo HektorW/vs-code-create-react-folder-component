@@ -2,7 +2,9 @@
 
 All notable changes to the "Create React Folder Component" extension will be documented in this file.
 
-## 2.0.3
+## 2.1.0
+
+(New minor version because I messed up when publishing extension)
 
 - Use workspace EOL
 
