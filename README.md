@@ -40,6 +40,7 @@ No extra requirements 🎉.
 By default the extension will ask you each time which language you want to use for your component but you can change that behaviour with this setting.
 
 Available options:
+
 - `JavaScript`
 - `TypeScript`
 - `Ask`
@@ -52,17 +53,19 @@ All the following settings control the contents of the templates that will be us
 
 The following variables are exposed in your templates.
 
-| Variable | Description |
-|----------|-------------|
-| $COMPONENT_NAME | The name you entered for the component. |
-| $STYLE_COMPONENT_NAME | A transformed css-style name of the component name. |
-| $STYLE_COMPONENT_FILENAME | The filename of the style file. It's a result of the `styleFileNameTemplate` setting of the current language. |
+| Variable                   | Description                                                                                                   |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| \$COMPONENT_NAME           | The name you entered for the component.                                                                       |
+| \$COMPONENT_CAMELCASE_NAME | Same as \$COMPONENT_NAME but with a lower case leading letter.                                                |
+| \$STYLE_COMPONENT_NAME     | A transformed css-style name of the component name.                                                           |
+| \$STYLE_COMPONENT_FILENAME | The filename of the style file. It's a result of the `styleFileNameTemplate` setting of the current language. |
 
 #### JavaScript Component file Template
 
 Template for your component file in JavaScript.
 
 Default:
+
 ```json
 [
   "import React from 'react'",
@@ -81,6 +84,7 @@ Default:
 Template used for creating the styled Component file in JavaScript.
 
 Default:
+
 ```json
 [
   "import React from 'react'",
@@ -100,10 +104,9 @@ Default:
 Template used for creating the index file in JavaScript.
 
 Default:
+
 ```json
-[
-  "export { default } from './$COMPONENT_NAME'"
-]
+["export { default } from './$COMPONENT_NAME'"]
 ```
 
 #### JavaScript style file Template
@@ -111,10 +114,9 @@ Default:
 Template used for creating the style file in JavaScript.
 
 Default:
+
 ```json
-[
-  ".$STYLE_COMPONENT_NAME {}"
-]
+[".$STYLE_COMPONENT_NAME {}"]
 ```
 
 #### JavaScript style file name template
@@ -128,6 +130,7 @@ Default: `"$STYLE_COMPONENT_NAME.scss"`
 Template used for creating the Component file in TypeScript.
 
 Default:
+
 ```json
 [
   "import React from 'react'",
@@ -145,6 +148,7 @@ Default:
 Template used for creating the styled Component file in TypeScript.
 
 Default:
+
 ```json
 [
   "import React from 'react'",
@@ -157,15 +161,15 @@ Default:
   "}"
 ]
 ```
+
 #### TypeScript index file Template
 
 Template used for creating the index file in TypeScript.
 
 Default:
+
 ```json
-[
-  "export { default } from './$COMPONENT_NAME'"
-]
+["export { default } from './$COMPONENT_NAME'"]
 ```
 
 #### TypeScript style file Template
@@ -173,10 +177,9 @@ Default:
 Template used for creating the style file in TypeScript.
 
 Default:
+
 ```json
-[
-  ".$STYLE_COMPONENT_NAME {}"
-]
+[".$STYLE_COMPONENT_NAME {}"]
 ```
 
 #### TypeScript style file name template
@@ -184,6 +187,33 @@ Default:
 File name for style file in TypeScript.
 
 Default: `"$STYLE_COMPONENT_NAME.scss"`
+
+#### Custom files
+
+There is also support for custom files through the `customFiles` setting. This has no defaults, but here is an example:
+
+```json
+[
+  {
+    "filename": "$COMPONENT_NAME.hooks.ts",
+    "contents": [
+      "import classNames from 'classnames'",
+      "",
+      "import styles from './$STYLE_COMPONENT_NAME.scss'",
+      "",
+      "export function useComponentStyles() {",
+      "  const $COMPONENT_CAMELCASE_NAMEStyles = classNames({",
+      "    [styles['$COMPONENT_CAMELCASE_NAME']]: true",
+      "  })",
+      "",
+      "  return {",
+      "    $COMPONENT_CAMELCASE_NAMEStyles",
+      "  }",
+      "}"
+    ]
+  }
+]
+```
 
 ## Known Issues
 
