@@ -10,10 +10,12 @@ import {
   getIndexTemplate,
   getStyleFileTemplate,
   getStyleFileNameTemplate,
-  getStyledComponentTemplate
+  getStyledComponentTemplate,
+  getCustomFiles
 } from './utils/extensionSettings'
 import transformComponentNameToStyleName from './utils/transformComponentNameToStyleName'
 import showSelectLanguageTemplate from './showSelectLanguageTemplate'
+import transformComponentNameToCamelCase from './utils/transformComponentNameToCamelCase'
 
 export default async function createTypeScriptComponent(
   clickedUri?: Uri,
@@ -37,9 +39,11 @@ export default async function createTypeScriptComponent(
   const componentTemplate = withStyle
     ? getStyledComponentTemplate(extensionSettings, templateLanguage)
     : getComponentTemplate(extensionSettings, templateLanguage)
+  const customFiles = getCustomFiles(extensionSettings)
 
   const templateData: TemplateData = {
-    $COMPONENT_NAME: componentName
+    $COMPONENT_NAME: componentName,
+    $COMPONENT_CAMELCASE_NAME: transformComponentNameToCamelCase(componentName)
   }
 
   if (withStyle) {
@@ -69,6 +73,24 @@ export default async function createTypeScriptComponent(
     files.push({
       uri: Uri.file(join(componentFolderUri.path, templateData.$STYLE_COMPONENT_FILENAME)),
       contents: renderListTemplate(styleFileTemplate, templateData)
+    })
+  }
+
+  if (customFiles !== 'invalid_setting') {
+    customFiles.forEach(settingsObject => {
+      if (
+        typeof settingsObject.filename !== 'string' &&
+        false === Array.isArray(settingsObject.contents)
+      ) {
+        return
+      }
+
+      files.push({
+        uri: Uri.file(
+          join(componentFolderUri.path, renderTemplate(settingsObject.filename, templateData))
+        ),
+        contents: renderListTemplate(settingsObject.contents, templateData)
+      })
     })
   }
 

@@ -5,6 +5,11 @@ export enum TemplateLanguage {
   JavaScript = 'JavaScript'
 }
 
+export interface CustomFile {
+  filename: string
+  contents: string[]
+}
+
 export function getExtensionSettings(workspaceFolder?: WorkspaceFolder) {
   return workspace.getConfiguration(
     'createreactfoldercomponent',
@@ -102,4 +107,12 @@ export function getDefaultTemplateLanguage(
     if (lowerCasedChoice === 'javascript') return TemplateLanguage.JavaScript
   }
   return null
+}
+
+export function getCustomFiles(extensionSettings: WorkspaceConfiguration) {
+  const customFilesArray: CustomFile[] | undefined = extensionSettings.get<CustomFile[]>(
+    'customFiles'
+  )
+
+  return customFilesArray || 'invalid_setting'
 }
