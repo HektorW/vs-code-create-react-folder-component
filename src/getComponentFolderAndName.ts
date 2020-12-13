@@ -1,6 +1,7 @@
 import { Uri, workspace, window, WorkspaceFolder } from 'vscode'
 import { join } from 'path'
 import showSelectComponentParentFolder from './showSelectComponentParentFolder'
+import { getCleanedInputName } from './utils/transformNames'
 
 export default async function getComponentFolderAndName(
   clickedUri?: Uri
@@ -30,15 +31,21 @@ export default async function getComponentFolderAndName(
 
   const componentName = await window.showInputBox({
     placeHolder: 'ComponentName',
-    prompt: `Component will be created in ${promptFolder}`
+    prompt: `Component will be created in ${promptFolder}`,
   })
 
   if (!componentName) {
     return null
   }
 
-  const componentFolderPath = join(parentFolder.path, componentName)
+  const cleanedComponentName = getCleanedInputName(componentName)
+
+  const componentFolderPath = join(parentFolder.path, cleanedComponentName)
   const componentFolderUri = Uri.file(componentFolderPath)
 
-  return { componentFolderUri, componentName, workspaceFolder }
+  return {
+    componentFolderUri,
+    componentName: cleanedComponentName,
+    workspaceFolder,
+  }
 }
