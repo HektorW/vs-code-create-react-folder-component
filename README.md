@@ -196,6 +196,7 @@ There is also support for custom files through the `customFiles` setting. This h
 [
   {
     "filename": "$COMPONENT_NAME.hooks.ts",
+    "outputForLanguage": "TypeScript", // the file will be created for both JS and TS if left 'undefined'
     "contents": [
       "import classNames from 'classnames'",
       "",

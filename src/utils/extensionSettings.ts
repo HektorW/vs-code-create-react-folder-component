@@ -7,7 +7,7 @@ export enum TemplateLanguage {
 
 export interface CustomFile {
   filename: string
-  language?: TemplateLanguage
+  outputForLanguage?: TemplateLanguage
   contents: string[]
 }
 
@@ -114,5 +114,5 @@ export function getCustomFiles(extensionSettings: WorkspaceConfiguration) {
   const customFilesArray: CustomFile[] | undefined =
     extensionSettings.get<CustomFile[]>('customFiles')
 
-  return customFilesArray || 'invalid_setting'
+  return customFilesArray || []
 }

@@ -76,7 +76,7 @@ export default async function createTypeScriptComponent(
     })
   }
 
-  if (customFiles !== 'invalid_setting') {
+  if (customFiles.length) {
     customFiles.forEach((settingsObject) => {
       if (
         typeof settingsObject.filename !== 'string' &&
@@ -85,11 +85,10 @@ export default async function createTypeScriptComponent(
         return
       }
 
-      if (typeof settingsObject.language !== 'undefined') {
-        return
-      }
-
-      if (settingsObject.language !== templateLanguage) {
+      if (
+        typeof settingsObject.outputForLanguage !== 'undefined' &&
+        settingsObject.outputForLanguage !== templateLanguage
+      ) {
         return
       }
 
