@@ -2,7 +2,13 @@ import { workspace, WorkspaceFolder, WorkspaceConfiguration } from 'vscode'
 
 export enum TemplateLanguage {
   TypeScript = 'TypeScript',
-  JavaScript = 'JavaScript'
+  JavaScript = 'JavaScript',
+}
+
+export interface CustomFile {
+  filename: string
+  outputForLanguage?: TemplateLanguage
+  contents: string[]
 }
 
 export function getExtensionSettings(workspaceFolder?: WorkspaceFolder) {
@@ -102,4 +108,11 @@ export function getDefaultTemplateLanguage(
     if (lowerCasedChoice === 'javascript') return TemplateLanguage.JavaScript
   }
   return null
+}
+
+export function getCustomFiles(extensionSettings: WorkspaceConfiguration) {
+  const customFilesArray: CustomFile[] | undefined =
+    extensionSettings.get<CustomFile[]>('customFiles')
+
+  return customFilesArray || []
 }

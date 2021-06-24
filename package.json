@@ -1,215 +1,222 @@
 {
-	"name": "create-react-folder-component",
-	"displayName": "Create React Folder Component",
-	"description": "A simple wizard that speeds up creating new React folder components",
-	"publisher": "hektorw",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/HektorW/vs-code-create-react-folder-component"
-	},
-	"version": "2.1.0",
-	"icon": "images/icon.png",
-	"engines": {
-		"vscode": "^1.39.0"
-	},
-	"categories": [
-		"Other",
-		"Snippets"
-	],
-	"keywords": [
-		"react",
-		"component",
-		"snippet",
-		"boilerplate",
-		"typescript",
-		"javascript",
-		"folder-component"
-	],
-	"galleryBanner": {
-		"color": "#1a202d",
-		"theme": "dark"
-	},
-	"activationEvents": [
-		"onCommand:extension.createReactFolderComponent",
-		"onCommand:extension.createReactFolderComponentWithStyle"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.createReactFolderComponent",
-				"title": "Create React Folder Component"
-			},
-			{
-				"command": "extension.createReactFolderComponentWithStyle",
-				"title": "Create React Folder Component (with style)"
-			}
-		],
-		"menus": {
-			"explorer/context": [
-				{
-					"command": "extension.createReactFolderComponent",
-					"group": "7_modification"
-				},
-				{
-					"command": "extension.createReactFolderComponentWithStyle",
-					"group": "7_modification"
-				}
-			]
-		},
-		"configuration": {
-			"title": "Create React Folder Component",
-			"properties": {
-				"createreactfoldercomponent.templateLanguage": {
-					"scope": "resource",
-					"title": "Template Language",
-					"description": "Language to use when creating Components",
-					"type": "string",
-					"default": "Ask",
-					"enum": [
-						"JavaScript",
-						"TypeScript",
-						"Ask"
-					]
-				},
-				"createreactfoldercomponent.javaScriptComponentTemplate": {
-					"scope": "resource",
-					"title": "JavaScript Component file Template",
-					"type": "array",
-					"description": "Template used for creating the Component file in JavaScript",
-					"default": [
-						"import React from 'react'",
-						"import PropTypes from 'prop-types'",
-						"",
-						"$COMPONENT_NAME.propTypes = {",
-						"}",
-						"",
-						"export default function $COMPONENT_NAME({}) {",
-						"}"
-					]
-				},
-				"createreactfoldercomponent.javaScriptStyledComponentTemplate": {
-					"scope": "resource",
-					"title": "JavaScript styled Component file Template",
-					"type": "array",
-					"description": "Template used for creating the styled Component file in JavaScript",
-					"default": [
-						"import React from 'react'",
-						"import PropTypes from 'prop-types'",
-						"import './$STYLE_COMPONENT_FILENAME'",
-						"",
-						"$COMPONENT_NAME.propTypes = {",
-						"}",
-						"",
-						"export default function $COMPONENT_NAME({}) {",
-						"}"
-					]
-				},
-				"createreactfoldercomponent.javaScriptIndexTemplate": {
-					"scope": "resource",
-					"title": "JavaScript index file Template",
-					"type": "array",
-					"description": "Template used for creating the index file in JavaScript",
-					"default": [
-						"export { default } from './$COMPONENT_NAME'"
-					]
-				},
-				"createreactfoldercomponent.javaScriptStyleTemplate": {
-					"scope": "resource",
-					"title": "JavaScript style file Template",
-					"type": "array",
-					"description": "Template used for creating the style file in JavaScript",
-					"default": [
-						".$STYLE_COMPONENT_NAME {}"
-					]
-				},
-				"createreactfoldercomponent.javaScriptStyleFileNameTemplate": {
-					"scope": "resource",
-					"title": "JavaScript style file name template",
-					"type": "string",
-					"description": "File name for style file in JavaScript",
-					"default": "$STYLE_COMPONENT_NAME.scss"
-				},
-				"createreactfoldercomponent.typeScriptComponentTemplate": {
-					"scope": "resource",
-					"title": "TypeScript Component file Template",
-					"type": "array",
-					"description": "Template used for creating the Component file in TypeScript",
-					"default": [
-						"import React from 'react'",
-						"",
-						"interface $COMPONENT_NAMEProps {",
-						"}",
-						"",
-						"export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
-						"}"
-					]
-				},
-				"createreactfoldercomponent.typeScriptStyledComponentTemplate": {
-					"scope": "resource",
-					"title": "TypeScript styled Component file Template",
-					"type": "array",
-					"description": "Template used for creating the styled Component file in TypeScript",
-					"default": [
-						"import React from 'react'",
-						"import './$STYLE_COMPONENT_FILENAME'",
-						"",
-						"interface $COMPONENT_NAMEProps {",
-						"}",
-						"",
-						"export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
-						"}"
-					]
-				},
-				"createreactfoldercomponent.typeScriptIndexTemplate": {
-					"scope": "resource",
-					"title": "TypeScript index file Template",
-					"type": "array",
-					"description": "Template used for creating the index file in TypeScript",
-					"default": [
-						"export { default } from './$COMPONENT_NAME'"
-					]
-				},
-				"createreactfoldercomponent.typeScriptStyleTemplate": {
-					"scope": "resource",
-					"title": "TypeScript style file Template",
-					"type": "array",
-					"description": "Template used for creating the style file in TypeScript",
-					"default": [
-						".$STYLE_COMPONENT_NAME {}"
-					]
-				},
-				"createreactfoldercomponent.typeScriptStyleFileNameTemplate": {
-					"scope": "resource",
-					"title": "TypeScript style file name template",
-					"type": "string",
-					"description": "File name for style file in TypeScript",
-					"default": "$STYLE_COMPONENT_NAME.scss"
-				}
-			}
-		}
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile",
-		"test": "node ./out/test/runTest.js",
-		"mocha": "mocha"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^5.2.6",
-		"@types/node": "^10.12.21",
-		"@types/vscode": "^1.39.0",
-		"glob": "^7.1.4",
-		"mocha": "^6.1.4",
-		"ts-node": "^8.4.1",
-		"tslint": "^5.12.1",
-		"typescript": "^3.3.1",
-		"vscode-test": "^1.2.0"
-	},
-	"dependencies": {
-		"minimatch": "^3.0.4"
-	}
+  "name": "create-react-folder-component",
+  "displayName": "Create React Folder Component",
+  "description": "A simple wizard that speeds up creating new React folder components",
+  "publisher": "hektorw",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HektorW/vs-code-create-react-folder-component"
+  },
+  "version": "2.1.0",
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.39.0"
+  },
+  "categories": [
+    "Other",
+    "Snippets"
+  ],
+  "keywords": [
+    "react",
+    "component",
+    "snippet",
+    "boilerplate",
+    "typescript",
+    "javascript",
+    "folder-component"
+  ],
+  "galleryBanner": {
+    "color": "#1a202d",
+    "theme": "dark"
+  },
+  "activationEvents": [
+    "onCommand:extension.createReactFolderComponent",
+    "onCommand:extension.createReactFolderComponentWithStyle"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.createReactFolderComponent",
+        "title": "Create React Folder Component"
+      },
+      {
+        "command": "extension.createReactFolderComponentWithStyle",
+        "title": "Create React Folder Component (with style)"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.createReactFolderComponent",
+          "group": "7_modification"
+        },
+        {
+          "command": "extension.createReactFolderComponentWithStyle",
+          "group": "7_modification"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Create React Folder Component",
+      "properties": {
+        "createreactfoldercomponent.templateLanguage": {
+          "scope": "resource",
+          "title": "Template Language",
+          "description": "Language to use when creating Components",
+          "type": "string",
+          "default": "Ask",
+          "enum": [
+            "JavaScript",
+            "TypeScript",
+            "Ask"
+          ]
+        },
+        "createreactfoldercomponent.javaScriptComponentTemplate": {
+          "scope": "resource",
+          "title": "JavaScript Component file Template",
+          "type": "array",
+          "description": "Template used for creating the Component file in JavaScript",
+          "default": [
+            "import React from 'react'",
+            "import PropTypes from 'prop-types'",
+            "",
+            "$COMPONENT_NAME.propTypes = {",
+            "}",
+            "",
+            "export default function $COMPONENT_NAME({}) {",
+            "}"
+          ]
+        },
+        "createreactfoldercomponent.javaScriptStyledComponentTemplate": {
+          "scope": "resource",
+          "title": "JavaScript styled Component file Template",
+          "type": "array",
+          "description": "Template used for creating the styled Component file in JavaScript",
+          "default": [
+            "import React from 'react'",
+            "import PropTypes from 'prop-types'",
+            "import './$STYLE_COMPONENT_FILENAME'",
+            "",
+            "$COMPONENT_NAME.propTypes = {",
+            "}",
+            "",
+            "export default function $COMPONENT_NAME({}) {",
+            "}"
+          ]
+        },
+        "createreactfoldercomponent.javaScriptIndexTemplate": {
+          "scope": "resource",
+          "title": "JavaScript index file Template",
+          "type": "array",
+          "description": "Template used for creating the index file in JavaScript",
+          "default": [
+            "export { default } from './$COMPONENT_NAME'"
+          ]
+        },
+        "createreactfoldercomponent.javaScriptStyleTemplate": {
+          "scope": "resource",
+          "title": "JavaScript style file Template",
+          "type": "array",
+          "description": "Template used for creating the style file in JavaScript",
+          "default": [
+            ".$STYLE_COMPONENT_NAME {}"
+          ]
+        },
+        "createreactfoldercomponent.javaScriptStyleFileNameTemplate": {
+          "scope": "resource",
+          "title": "JavaScript style file name template",
+          "type": "string",
+          "description": "File name for style file in JavaScript",
+          "default": "$STYLE_COMPONENT_NAME.scss"
+        },
+        "createreactfoldercomponent.typeScriptComponentTemplate": {
+          "scope": "resource",
+          "title": "TypeScript Component file Template",
+          "type": "array",
+          "description": "Template used for creating the Component file in TypeScript",
+          "default": [
+            "import React from 'react'",
+            "",
+            "interface $COMPONENT_NAMEProps {",
+            "}",
+            "",
+            "export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
+            "}"
+          ]
+        },
+        "createreactfoldercomponent.typeScriptStyledComponentTemplate": {
+          "scope": "resource",
+          "title": "TypeScript styled Component file Template",
+          "type": "array",
+          "description": "Template used for creating the styled Component file in TypeScript",
+          "default": [
+            "import React from 'react'",
+            "import './$STYLE_COMPONENT_FILENAME'",
+            "",
+            "interface $COMPONENT_NAMEProps {",
+            "}",
+            "",
+            "export default function $COMPONENT_NAME({}: $COMPONENT_NAMEProps) {",
+            "}"
+          ]
+        },
+        "createreactfoldercomponent.typeScriptIndexTemplate": {
+          "scope": "resource",
+          "title": "TypeScript index file Template",
+          "type": "array",
+          "description": "Template used for creating the index file in TypeScript",
+          "default": [
+            "export { default } from './$COMPONENT_NAME'"
+          ]
+        },
+        "createreactfoldercomponent.typeScriptStyleTemplate": {
+          "scope": "resource",
+          "title": "TypeScript style file Template",
+          "type": "array",
+          "description": "Template used for creating the style file in TypeScript",
+          "default": [
+            ".$STYLE_COMPONENT_NAME {}"
+          ]
+        },
+        "createreactfoldercomponent.typeScriptStyleFileNameTemplate": {
+          "scope": "resource",
+          "title": "TypeScript style file name template",
+          "type": "string",
+          "description": "File name for style file in TypeScript",
+          "default": "$STYLE_COMPONENT_NAME.scss"
+        },
+        "createreactfoldercomponent.customFiles": {
+          "scope": "resource",
+          "title": "Array of custom files",
+          "type": "array",
+          "description": "Allows filename, language and contents",
+          "default": []
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node ./out/test/runTest.js",
+    "mocha": "mocha"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.1",
+    "@types/mocha": "^5.2.6",
+    "@types/node": "^10.12.21",
+    "@types/vscode": "^1.39.0",
+    "glob": "^7.1.4",
+    "mocha": "^6.1.4",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.12.1",
+    "typescript": "^3.3.1",
+    "vscode-test": "^1.2.0"
+  },
+  "dependencies": {
+    "minimatch": "^3.0.4"
+  }
 }
