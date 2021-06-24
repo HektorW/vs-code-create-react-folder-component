@@ -11,7 +11,7 @@ import {
   getStyleFileTemplate,
   getStyleFileNameTemplate,
   getStyledComponentTemplate,
-  getCustomFiles
+  getCustomFiles,
 } from './utils/extensionSettings'
 import transformComponentNameToStyleName from './utils/transformComponentNameToStyleName'
 import showSelectLanguageTemplate from './showSelectLanguageTemplate'
@@ -43,7 +43,7 @@ export default async function createTypeScriptComponent(
 
   const templateData: TemplateData = {
     $COMPONENT_NAME: componentName,
-    $COMPONENT_CAMELCASE_NAME: transformComponentNameToCamelCase(componentName)
+    $COMPONENT_CAMELCASE_NAME: transformComponentNameToCamelCase(componentName),
   }
 
   if (withStyle) {
@@ -59,12 +59,12 @@ export default async function createTypeScriptComponent(
       uri: Uri.file(
         join(componentFolderUri.path, `${componentName}${componentFileExtension(templateLanguage)}`)
       ),
-      contents: renderListTemplate(componentTemplate, templateData)
+      contents: renderListTemplate(componentTemplate, templateData),
     },
     {
       uri: Uri.file(join(componentFolderUri.path, `index${indexFileExtension(templateLanguage)}`)),
-      contents: renderListTemplate(indexTemplate, templateData)
-    }
+      contents: renderListTemplate(indexTemplate, templateData),
+    },
   ]
 
   if (withStyle) {
@@ -72,12 +72,12 @@ export default async function createTypeScriptComponent(
 
     files.push({
       uri: Uri.file(join(componentFolderUri.path, templateData.$STYLE_COMPONENT_FILENAME)),
-      contents: renderListTemplate(styleFileTemplate, templateData)
+      contents: renderListTemplate(styleFileTemplate, templateData),
     })
   }
 
   if (customFiles !== 'invalid_setting') {
-    customFiles.forEach(settingsObject => {
+    customFiles.forEach((settingsObject) => {
       if (
         typeof settingsObject.filename !== 'string' &&
         false === Array.isArray(settingsObject.contents)
@@ -85,11 +85,19 @@ export default async function createTypeScriptComponent(
         return
       }
 
+      if (typeof settingsObject.language !== 'undefined') {
+        return
+      }
+
+      if (settingsObject.language !== templateLanguage) {
+        return
+      }
+
       files.push({
         uri: Uri.file(
           join(componentFolderUri.path, renderTemplate(settingsObject.filename, templateData))
         ),
-        contents: renderListTemplate(settingsObject.contents, templateData)
+        contents: renderListTemplate(settingsObject.contents, templateData),
       })
     })
   }
