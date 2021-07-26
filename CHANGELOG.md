@@ -2,6 +2,10 @@
 
 All notable changes to the "Create React Folder Component" extension will be documented in this file.
 
+## 2.2.0
+
+- Add support for custom files
+
 ## 2.1.0
 
 (New minor version because I messed up when publishing extension)
